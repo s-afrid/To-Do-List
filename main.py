@@ -20,4 +20,10 @@ add_button = Button(window,
                     activeforeground="white",
                     activebackground="black")
 add_button.place(x=700,y=50)
+#Entry box
+entry_box = Entry(window,
+                  font=('Fira',13,'bold'),
+                  bg="#FAFFFF",
+                  relief=FLAT)
+entry_box.place(x=50,y=46,height=40,width=640)
 window.mainloop()
