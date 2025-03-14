@@ -14,6 +14,11 @@ app_icon = PhotoImage(file="images/app_icon.png")
 window.iconphoto(True, app_icon)
 window.config(bg="#b1c7c7")
 #Window Widgets
+app_title = Label(window,text="To-Do List",
+                  bg="#b1c7c7",
+                  fg="black",
+                  font=('Arial',30,'bold'))
+app_title.pack()
 #Frame holding Entry box and add button
 frame1 = Frame(window,padx=20,pady=20,relief=FLAT,bg="#b1c7c7",width=700)
 frame1.pack()
