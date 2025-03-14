@@ -70,6 +70,13 @@ entry_box.grid(row=0,column=0)
 #Frame to add list box and few buttons
 frame2 = Frame(window,padx=20,pady=20,relief=FLAT,bg="#b1c7c7")
 frame2.pack()
+#Label
+label1 = Label(frame2,
+               text="Tasks",
+               font=('Arial',15,'bold'),
+               bg="#b1c7c7",
+               fg="black")
+label1.grid(row=0,column=0,columnspan=12)
 #List Box
 list_box = Listbox(frame2,
                    relief=FLAT,
@@ -78,7 +85,7 @@ list_box = Listbox(frame2,
                    width=55,
                    height=10,
                    selectmode=MULTIPLE)
-list_box.grid(row=0,column=0,columnspan=12)
+list_box.grid(row=1,column=0,columnspan=12)
 #Button to check mark tasks
 mark_complete = Button(frame2,command=mark_complete,borderwidth=0,
                        text="\U00002713",
