@@ -3,6 +3,11 @@ from tkinter import messagebox
 
 
 #Tasks
+def import_from():
+    with open('log.txt','r') as file:
+        for i in file.readlines():
+            list_box.insert(END,i.strip())
+
 def add_to_list():
     list_box.insert(list_box.size(),entry_box.get())
 
@@ -91,6 +96,7 @@ list_box = Listbox(frame2,
                    height=10,
                    selectmode=MULTIPLE)
 list_box.grid(row=1,column=0,columnspan=12)
+import_from()
 #Button to check mark tasks
 mark_complete = Button(frame2,command=mark_complete,borderwidth=0,
                        text="\U00002713",
