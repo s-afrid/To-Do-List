@@ -1,7 +1,11 @@
 from tkinter import *
+
+from netaddr.strategy.ipv4 import width
+
+
 #Tasks
 def add_to_list():
-    pass
+    list_box.insert(list_box.size(),entry_box.get())
 window = Tk()
 #Window Settings
 window.geometry("800x600")
@@ -22,8 +26,14 @@ add_button = Button(window,
 add_button.place(x=700,y=50)
 #Entry box
 entry_box = Entry(window,
-                  font=('Fira',13,'bold'),
+                  font=('Constantia',13,'bold'),
                   bg="#FAFFFF",
                   relief=FLAT)
 entry_box.place(x=50,y=46,height=40,width=640)
+#List Box
+list_box = Listbox(window,
+                   relief=FLAT,
+                   bg="#c7eded",
+                   font=("Constantia",13,"bold"))
+list_box.place(x=50,y=150,width=700)
 window.mainloop()
