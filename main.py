@@ -14,26 +14,36 @@ app_icon = PhotoImage(file="images/app_icon.png")
 window.iconphoto(True, app_icon)
 window.config(bg="#b1c7c7")
 #Window Widgets
+#Frame holding Entry box and add button
+frame1 = Frame(window,padx=20,pady=20,relief=FLAT,bg="#b1c7c7",width=700)
+frame1.pack()
 #Add button
-add_button = Button(window,
+add_button = Button(frame1,
                     text="Add",
                     command=add_to_list,
                     relief=FLAT,
                     fg="white",
                     bg="black",
                     activeforeground="white",
-                    activebackground="black")
-add_button.place(x=700,y=50)
+                    activebackground="black",
+                    padx=5,
+                    pady=5)
+add_button.grid(row=0,column=1)
 #Entry box
-entry_box = Entry(window,
+entry_box = Entry(frame1,
                   font=('Constantia',13,'bold'),
                   bg="#FAFFFF",
-                  relief=FLAT)
-entry_box.place(x=50,y=46,height=40,width=640)
+                  relief=FLAT,
+                  width=50)
+entry_box.grid(row=0,column=0)
+#Frame to add list box and few buttons
+frame2 = Frame(window,padx=20,pady=20,relief=FLAT,bg="#b1c7c7")
+frame2.pack()
 #List Box
-list_box = Listbox(window,
+list_box = Listbox(frame2,
                    relief=FLAT,
                    bg="#c7eded",
-                   font=("Constantia",13,"bold"))
-list_box.place(x=50,y=150,width=700)
+                   font=("Constantia",13,"bold"),
+                   width=55)
+list_box.pack()
 window.mainloop()
