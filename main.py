@@ -1,16 +1,47 @@
 from tkinter import *
-
-from netaddr.strategy.ipv4 import width
+from tkinter import messagebox
 
 
 #Tasks
 def add_to_list():
     list_box.insert(list_box.size(),entry_box.get())
+
+def mark_complete():
+    f = 0
+    for index in list_box.curselection():
+        m = list_box.get(index)
+        if m[-4:] == " - \U00002713":
+            f+=1
+        else:
+            list_box.delete(index)
+            list_box.insert(index,m+" - \U00002713")
+    if f!=0:
+        messagebox.showwarning(title="Warning", message="Selected task is already completed")
+
+
+def mark_incomplete():
+    f = 0
+    for index in list_box.curselection():
+        m = list_box.get(index)
+        if m[-4:] == " - \U00002713":
+            m = m[:-4]
+            list_box.delete(index)
+            list_box.insert(index,m)
+        else:
+            f+=1
+    if f!=0:
+        messagebox.showwarning(title="Warning", message="Selected task is already incomplete")
+def delete_task():
+    for index in reversed(list_box.curselection()):
+        list_box.delete(index)
+
 window = Tk()
 #Window Settings
 window.geometry("800x600")
 window.title("To-Do-List")
+#All icon photo images
 app_icon = PhotoImage(file="images/app_icon.png")
+
 window.iconphoto(True, app_icon)
 window.config(bg="#b1c7c7")
 #Window Widgets
@@ -44,6 +75,33 @@ list_box = Listbox(frame2,
                    relief=FLAT,
                    bg="#c7eded",
                    font=("Constantia",13,"bold"),
-                   width=55)
-list_box.pack()
+                   width=55,
+                   height=10,
+                   selectmode=MULTIPLE)
+list_box.grid(row=0,column=0,columnspan=12)
+#Button to check mark tasks
+mark_complete = Button(frame2,command=mark_complete,borderwidth=0,
+                       text="\U00002713",
+                       bg="black",
+                       fg="white",
+                       activebackground="black",
+                       activeforeground="white")
+mark_complete.grid(row=2,column=0)
+#Button to uncheck tasks
+mark_incomplete = Button(frame2,command=mark_incomplete,borderwidth=0,
+                         text="\U00010102",
+                         bg="black",
+                         fg="white",
+                         activebackground="black",
+                         activeforeground="white"
+                         )
+mark_incomplete.grid(row=2,column=1)
+delete_button = Button(frame2,command=delete_task,borderwidth=0,
+                       text="Delete",
+                       bg="black",
+                       fg="white",
+                       activebackground="black",
+                       activeforeground="white"
+                       )
+delete_button.grid(row=2,column=2)
 window.mainloop()
