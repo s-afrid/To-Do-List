@@ -6,6 +6,7 @@ from netaddr.strategy.ipv4 import width
 #Tasks
 def add_to_list():
     list_box.insert(list_box.size(),entry_box.get())
+
 window = Tk()
 #Window Settings
 window.geometry("800x600")
@@ -13,6 +14,7 @@ window.title("To-Do-List")
 app_icon = PhotoImage(file="images/app_icon.png")
 window.iconphoto(True, app_icon)
 window.config(bg="#b1c7c7")
+window.resizable(0,0)
 #Window Widgets
 #Frame holding Entry box and add button
 frame1 = Frame(window,padx=20,pady=20,relief=FLAT,bg="#b1c7c7",width=700)
