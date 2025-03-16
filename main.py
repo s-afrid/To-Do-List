@@ -8,6 +8,13 @@ def import_from():
         for i in file.readlines():
             list_box.insert(END,i.strip())
 
+def on_closing():
+    if messagebox.askokcancel(title="Quit",message="Do you want to close?"):
+        with open('log.txt','w') as file:
+            for i in list_box.get(0,END):
+                file.write(i+"\n")
+        window.destroy()
+
 def add_to_list():
     list_box.insert(list_box.size(),entry_box.get())
 
@@ -49,6 +56,7 @@ app_icon = PhotoImage(file="images/app_icon.png")
 
 window.iconphoto(True, app_icon)
 window.config(bg="#b1c7c7")
+window.protocol("WM_DELETE_WINDOW",on_closing)
 #Window Widgets
 app_title = Label(window,text="To-Do List",
                   bg="#b1c7c7",
