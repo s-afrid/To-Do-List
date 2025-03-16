@@ -49,13 +49,16 @@ def delete_task():
     for index in reversed(list_box.curselection()):
         list_box.delete(index)
     new = list(list_box.get(0,END))
-    for i in list_box.get(0,END):
-        list_box.delete(list_box.get(0,END).index(i))
+    clear_all()
     c = 0
     for i in new:
        i = str(new.index(i)+1)+" - "+i[4:]
        list_box.insert(c,i)
        c+=1
+
+def clear_all():
+    for i in list_box.get(0,END):
+        list_box.delete(list_box.get(0,END).index(i))
 
 
 window = Tk()
@@ -88,7 +91,8 @@ add_button = Button(frame1,
                     activeforeground="white",
                     activebackground="black",
                     padx=5,
-                    pady=5)
+                    pady=5,
+                    borderwidth=0)
 add_button.grid(row=0,column=1)
 #Entry box
 entry_box = Entry(frame1,
@@ -123,7 +127,8 @@ mark_complete = Button(frame2,command=mark_complete,borderwidth=0,
                        bg="black",
                        fg="white",
                        activebackground="black",
-                       activeforeground="white")
+                       activeforeground="white",
+                       width=5)
 mark_complete.grid(row=2,column=0)
 #Button to uncheck tasks
 mark_incomplete = Button(frame2,command=mark_incomplete,borderwidth=0,
@@ -131,15 +136,27 @@ mark_incomplete = Button(frame2,command=mark_incomplete,borderwidth=0,
                          bg="black",
                          fg="white",
                          activebackground="black",
-                         activeforeground="white"
+                         activeforeground="white",
+                         width=5
                          )
 mark_incomplete.grid(row=2,column=1)
+#Button to delete tasks
 delete_button = Button(frame2,command=delete_task,borderwidth=0,
                        text="Delete",
                        bg="black",
                        fg="white",
                        activebackground="black",
-                       activeforeground="white"
+                       activeforeground="white",
+                       width=5
                        )
 delete_button.grid(row=2,column=2)
+#Button to clear all tasks
+clear_button = Button(frame2,command=clear_all,borderwidth=0,
+                       text="Clear All",
+                       bg="black",
+                       fg="white",
+                       activebackground="black",
+                       activeforeground="white"
+                       )
+clear_button.grid(row=2,column=3)
 window.mainloop()
