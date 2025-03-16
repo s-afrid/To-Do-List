@@ -16,7 +16,11 @@ def on_closing():
         window.destroy()
 
 def add_to_list():
-    list_box.insert(list_box.size(),str(list_box.size()+1)+" - "+entry_box.get())
+    if entry_box.get() == "":
+        messagebox.showwarning(title="Warning",message="You must enter a task")
+    else:
+        list_box.insert(list_box.size(),str(list_box.size()+1)+" - "+entry_box.get())
+        entry_box.delete(0,END)
 
 def mark_complete():
     f = 0
