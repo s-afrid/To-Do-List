@@ -4,6 +4,9 @@ from netaddr.strategy.ipv4 import width
 
 
 #Tasks
+def on_closing():
+    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+        window.destroy()
 def add_to_list():
     list_box.insert(list_box.size(),entry_box.get())
 
@@ -15,6 +18,7 @@ app_icon = PhotoImage(file="images/app_icon.png")
 window.iconphoto(True, app_icon)
 window.config(bg="#b1c7c7")
 window.resizable(0,0)
+window.protocol("WM_DELETE_WINDOW",on_closing)
 #Window Widgets
 #Frame holding Entry box and add button
 frame1 = Frame(window,padx=20,pady=20,relief=FLAT,bg="#b1c7c7",width=700)
