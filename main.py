@@ -16,7 +16,7 @@ def on_closing():
         window.destroy()
 
 def add_to_list():
-    list_box.insert(list_box.size(),entry_box.get())
+    list_box.insert(list_box.size(),str(list_box.size()+1)+" - "+entry_box.get())
 
 def mark_complete():
     f = 0
@@ -44,8 +44,19 @@ def mark_incomplete():
     if f!=0:
         messagebox.showwarning(title="Warning", message="Selected task is already incomplete")
 def delete_task():
+    if list_box.curselection() == None:
+        delete_button.config(state=DISABLED)
     for index in reversed(list_box.curselection()):
         list_box.delete(index)
+    new = list(list_box.get(0,END))
+    for i in list_box.get(0,END):
+        list_box.delete(list_box.get(0,END).index(i))
+    c = 0
+    for i in new:
+       i = str(new.index(i)+1)+" - "+i[4:]
+       list_box.insert(c,i)
+       c+=1
+
 
 window = Tk()
 #Window Settings
