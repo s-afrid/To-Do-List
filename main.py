@@ -80,7 +80,8 @@ window.resizable(0,0)
 app_title = Label(window,text="To-Do List",
                   bg="#b1c7c7",
                   fg="black",
-                  font=('Arial',30,'bold'))
+                  font=('Arial',30,'bold'),
+                  image=app_icon,compound='left')
 app_title.pack()
 #Frame holding Entry box and add button
 frame1 = Frame(window,padx=20,pady=20,relief=FLAT,bg="#b1c7c7",width=700)
