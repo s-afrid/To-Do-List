@@ -14,8 +14,39 @@ def on_closing():
             for i in list_box.get(0,END):
                 file.write(i+"\n")
         window.destroy()
+
 def add_to_list():
     list_box.insert(list_box.size(),entry_box.get())
+
+def mark_complete():
+    f = 0
+    for index in list_box.curselection():
+        m = list_box.get(index)
+        if m[-4:] == " - \U00002713":
+            f+=1
+        else:
+            list_box.delete(index)
+            list_box.insert(index,m+" - \U00002713")
+    if f!=0:
+        messagebox.showwarning(title="Warning", message="Selected task is already completed")
+
+
+def mark_incomplete():
+    f = 0
+    for index in list_box.curselection():
+        m = list_box.get(index)
+        if m[-4:] == " - \U00002713":
+            m = m[:-4]
+            list_box.delete(index)
+            list_box.insert(index,m)
+        else:
+            f+=1
+    if f!=0:
+        messagebox.showwarning(title="Warning", message="Selected task is already incomplete")
+def delete_task():
+    for index in reversed(list_box.curselection()):
+        list_box.delete(index)
+
 window = Tk()
 #Window Settings
 window.geometry("800x600")
@@ -25,7 +56,6 @@ app_icon = PhotoImage(file="images/app_icon.png")
 
 window.iconphoto(True, app_icon)
 window.config(bg="#b1c7c7")
-window.resizable(0,0)
 window.protocol("WM_DELETE_WINDOW",on_closing)
 #Window Widgets
 app_title = Label(window,text="To-Do List",
