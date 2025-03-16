@@ -57,6 +57,7 @@ app_icon = PhotoImage(file="images/app_icon.png")
 window.iconphoto(True, app_icon)
 window.config(bg="#b1c7c7")
 window.protocol("WM_DELETE_WINDOW",on_closing)
+window.resizable(0,0)
 #Window Widgets
 app_title = Label(window,text="To-Do List",
                   bg="#b1c7c7",
