@@ -3,6 +3,17 @@ from tkinter import messagebox
 
 
 #Tasks
+def import_from():
+    with open('log.txt','r') as file:
+        for i in file.readlines():
+            list_box.insert(END,i.strip())
+
+def on_closing():
+    if messagebox.askokcancel(title="Quit",message="Do you want to close?"):
+        with open('log.txt','w') as file:
+            for i in list_box.get(0,END):
+                file.write(i+"\n")
+        window.destroy()
 def add_to_list():
     list_box.insert(list_box.size(),entry_box.get())
 window = Tk()
