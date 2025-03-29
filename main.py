@@ -26,11 +26,11 @@ def mark_complete():
     f = 0
     for index in list_box.curselection():
         m = list_box.get(index)
-        if m[-4:] == " - \U00002713":
+        if m[-4:] == " - ✔":
             f+=1
         else:
             list_box.delete(index)
-            list_box.insert(index,m+" - \U00002713")
+            list_box.insert(index,m+" - ✔")
     if f!=0:
         messagebox.showwarning(title="Warning", message="Selected task is already completed")
 
@@ -39,7 +39,7 @@ def mark_incomplete():
     f = 0
     for index in list_box.curselection():
         m = list_box.get(index)
-        if m[-4:] == " - \U00002713":
+        if m[-4:] == " - ✔":
             m = m[:-4]
             list_box.delete(index)
             list_box.insert(index,m)
@@ -128,7 +128,7 @@ list_box.grid(row=1,column=0,columnspan=12)
 import_from()
 #Button to check mark tasks
 mark_complete = Button(frame2,command=mark_complete,borderwidth=0,
-                       text="\U00002713",
+                       text="✔",
                        bg="black",
                        fg="white",
                        activebackground="black",
@@ -137,7 +137,7 @@ mark_complete = Button(frame2,command=mark_complete,borderwidth=0,
 mark_complete.grid(row=2,column=0)
 #Button to uncheck tasks
 mark_incomplete = Button(frame2,command=mark_incomplete,borderwidth=0,
-                         text="\U00010102",
+                         text="✘",
                          bg="black",
                          fg="white",
                          activebackground="black",
